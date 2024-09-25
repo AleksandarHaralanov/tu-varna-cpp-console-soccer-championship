@@ -10,12 +10,12 @@ struct Team {
     int matchPlayed{}, matchLost{}, goalsFor{}, goalsAgainst{}, goalDifference{}, points{};
 };
 
-void createContestant(Team* teams, int& contestantCount, Team newTeam) {
+static void createContestant(Team* teams, int& contestantCount, Team newTeam) {
     teams[contestantCount] = newTeam;
     contestantCount++;
 }
 
-void addContestant(Team* teams, int& contestantCount) {
+static void addContestant(Team* teams, int& contestantCount) {
     Team newContestant;
 
     cout << "  What is the name of the team?" << endl;
@@ -47,7 +47,7 @@ void addContestant(Team* teams, int& contestantCount) {
     createContestant(teams, contestantCount, newContestant);
 }
 
-void holdChampionship(Team* teams, int& contestantCount) {
+static void holdChampionship(Team* teams, int& contestantCount) {
     int score1, score2;
     srand(unsigned int(time(NULL)));
     system("cls");
@@ -125,7 +125,7 @@ void holdChampionship(Team* teams, int& contestantCount) {
     system("pause");
 }
 
-void showContestants(Team* teams, int& contestantCount) {
+static void showContestants(Team* teams, int& contestantCount) {
     system("cls");
     cout << "|-------------------------------------------------------------|" << endl;
     cout << "                       CONTESTANTS LIST" << endl;
@@ -141,7 +141,7 @@ void showContestants(Team* teams, int& contestantCount) {
     system("pause");
 }
 
-void showContestantDate(Team* teams, int& contestantCount) {
+static void showContestantDate(Team* teams, int& contestantCount) {
     int year = INT_MAX, month = INT_MAX, day = INT_MAX;
 
     for (int i = 0; i < contestantCount; i++) {
@@ -162,7 +162,7 @@ void showContestantDate(Team* teams, int& contestantCount) {
     }
 }
 
-void showContestantLosses(Team* teams, int& contestantCount) {
+static void showContestantLosses(Team* teams, int& contestantCount) {
     int minLosses = INT_MAX;
 
     for (int i = 0; i < contestantCount; i++) {
@@ -181,7 +181,7 @@ void showContestantLosses(Team* teams, int& contestantCount) {
     }
 }
 
-void searchContestant(Team* teams, int& contestantCount) {
+static void searchContestant(Team* teams, int& contestantCount) {
     string nameSearch;
     system("cls");
 
@@ -204,7 +204,7 @@ void searchContestant(Team* teams, int& contestantCount) {
     }
 }
 
-void goalDifferenceContestant(Team* teams, int& contestantCount) {
+static void goalDifferenceContestant(Team* teams, int& contestantCount) {
     int maxDifference = 0;
 
     for (int i = 0; i < contestantCount; i++) {
@@ -223,7 +223,7 @@ void goalDifferenceContestant(Team* teams, int& contestantCount) {
     }
 }
 
-void mostGoalsContestant(Team* teams, int& contestantCount) {
+static void mostGoalsContestant(Team* teams, int& contestantCount) {
     int mostGoals = 0;
 
     for (int i = 0; i < contestantCount; i++) {
@@ -242,7 +242,7 @@ void mostGoalsContestant(Team* teams, int& contestantCount) {
     }
 }
 
-void sortContestantsByDate(Team* teams, int& contestantCount) {
+static void sortContestantsByDate(Team* teams, int& contestantCount) {
     for (int i = 0; i < contestantCount; i++) {
         for (int j = i + 1; j < contestantCount; j++) {
             if (teams[i].foundedYear > teams[j].foundedYear ||
@@ -264,7 +264,7 @@ void sortContestantsByDate(Team* teams, int& contestantCount) {
     }
 }
 
-void sortContestantsByPoints(Team* teams, int& contestantCount) {
+static void sortContestantsByPoints(Team* teams, int& contestantCount) {
     for (int i = 0; i < contestantCount; i++) {
         for (int j = i + 1; j < contestantCount; j++) {
             if (teams[i].points < teams[j].points) {
@@ -284,7 +284,7 @@ void sortContestantsByPoints(Team* teams, int& contestantCount) {
     }
 }
 
-void writeBinary(Team* teams, int& contestantCount) {
+static void writeBinary(Team* teams, int& contestantCount) {
     fstream file;
     file.open("data.bin", ios::binary | ios::out);
     if (file.is_open()) {
@@ -305,7 +305,7 @@ void writeBinary(Team* teams, int& contestantCount) {
     }
 }
 
-int readBinary(Team* teams) {
+static int readBinary(Team* teams) {
     int n = 0;
     long pos;
     fstream file;
